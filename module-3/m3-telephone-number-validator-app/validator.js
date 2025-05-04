@@ -3,18 +3,13 @@ const checkBtn = document.getElementById("check-btn");
 const clearBtn = document.getElementById("clear-btn");
 const result = document.getElementById("results-div");
 function Check (){
-    const regex1 = /^\(\d{3}\) \d{3}-\d{4}$/;
-    const regex2 = /^\(\d{3}\)\d{3}-\d{4}$/;
-    const regex3 = /^\d{3}-\d{3}-\d{4}$/;
-    const regex4 = /^\d{10,11}$/;
-    const regex5 = /^\d{3} \d{3} \d{4}$/;
+    const regex = /^1?\s?(?:\(\d{3}\)|\d{3})[\s-]?\d{3}[\s-]?\d{4}$/;
   if(userInput.value === ""){
     alert("Please provide a phone number");
   }else if(regex.test(userInput.value)){
-    const digitsOnly = userInput.value.relace(/\D/g,"");
-    const digitCount = digitsOnly.length;
+    result.textContent = `Valid US number: ${userInput.value}`; 
   }else{
-    result.textContent = "invalid";
+    result.textContent = `Invalid US number: ${userInput.value}`;
   }
 }
 function Clear(){
