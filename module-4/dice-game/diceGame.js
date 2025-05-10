@@ -5,12 +5,25 @@ const roundElement = document.getElementById("current-round");
 const rollsElement = document.getElementById("current-round-rolls");
 const totalScoreElement = document.getElementById("total-score");
 const scoreHistory = document.getElementById("score-history");
-const rollDiceBtn = document.querySelector("#roll-dice-btn");
+const rollDiceBtn = document.getElementById("roll-dice-btn");
 const keepScoreBtn = document.getElementById("keep-score-btn");
-const rulesBtn = document.getElementById("rules-btn");
 const rulesContainer = document.querySelector(".rules-container");
-let isModalShowing = false;
+const rulesBtn = document.getElementById("rules-btn");
+
 let diceValuesArr = [];
-let rolls = 0;
+let isModalShowing = false;
 let score = 0;
-let round = 1;
+let round = 1; 
+let rolls = 0; 
+
+rulesBtn.addEventListener("click", ()=> {
+  if (rulesContainer.style.display === 'none' || rulesContainer.style.display === '') {
+    rulesContainer.style.display = 'block';
+    isModalShowing = true;
+    rulesBtn.textContent = "Hide rules";
+  } else {
+    rulesContainer.style.display = 'none';
+    isModalShowing = false;
+    rulesBtn.textContent = "Show rules";
+  }
+})
