@@ -29,6 +29,11 @@ const rollDice = () => {
   });
 };
 
+const updateStats = () => {
+  rollsElement.textContent = rolls;
+  roundElement.textContent = round;
+};
+
 
 
 rollDiceBtn.addEventListener("click", () => {
@@ -37,7 +42,7 @@ rollDiceBtn.addEventListener("click", () => {
   } else {
     rolls++;
     rollDice();
-    
+    updateStats();
   }
 });
 
