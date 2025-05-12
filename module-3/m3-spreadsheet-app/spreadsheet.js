@@ -1,4 +1,11 @@
-const range = (start, end) => Array(); // created an empty array inside the range function
+const range = (start, end) => 
+  Array(end - start + 1)        // create an array of appropriate length
+    .fill(start)                // fill all elements with the starting value
+    .map((element, index) => element + index); // adjust each value by index
+
+const charRange = (start, end) => 
+  range(start.charCodeAt(0), end.charCodeAt(0))
+  .map(code => String.fromCharCode(code));
 
 window.onload = () => {
   const container = document.getElementById("container"); //select an element(container) from the html by id
