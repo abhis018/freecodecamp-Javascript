@@ -43,6 +43,16 @@ range(1, 99).forEach(number => {
   const input = document.createElement("input");
   input.type = "text";
   input.id = letter + number;
-
+  input.ariaLabel = letter + number;
+  input.onchange = update;
+  container.appendChild(input);
  })   
 })
+
+const update = event => {
+  const element = event.target;
+  const value = element.value.replace(/\s/g, "");
+  if (!value.includes(element.id)) {
+
+  }
+}
