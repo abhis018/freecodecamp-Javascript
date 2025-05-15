@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Send to WhatsApp</title>
+</head>
+<body>
+  <h2>Send Your Query to WhatsApp</h2>
+  <input type="text" id="queryInput" placeholder="Enter your query here">
+  <button onclick="sendToWhatsApp()">Send</button>
+
+  <script>
+    function sendToWhatsApp() {
+      const query = document.getElementById('queryInput').value.trim();
+      if (query) {
+        const phoneNumber = "917004129994"; // WhatsApp number without + or dashes
+        const encodedQuery = encodeURIComponent(query);
+        const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedQuery}`;
+  
+        alert("Your message is ready in WhatsApp. Please press Send in the chat window.");
+        window.open(whatsappURL, '_blank');
+      } else {
+        alert("Please enter a query before sending.");
+      }
+    }
+  </script>  
+</body>
+</html>
