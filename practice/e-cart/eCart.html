@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>freeCodeCamp Shopping Cart</title>
+    <link rel="stylesheet" href="./eCart.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <img src="./logo.jpg"/>
+      <h1 class="title">BBT</h1>
+    </header>
+    <main>
+      <div id="cart-container">
+        <h3>ORDER DETAILS</h3>
+        <div id="products-container"></div>
+        <p>Total number of items: <span id="total-items">0</span></p>
+        <p>Subtotal: <span id="subtotal">$0</span></p>
+        <p>Taxes: <span id="taxes">$0</span></p>
+        <p>Total: <span id="total">$0</span></p>
+        <div id="qrcode"></div>
+        <div id="cart-button">
+          <button class="btn" id="clear-cart-btn">Clear Cart</button>
+          <button class="btn" id="place-order-btn">Place the Order</button>
+        </div>
+      </div>
+      <div class="category-tabs">
+        <button class="category-btn active">All</button>
+        <button class="category-btn">Snacks</button>
+        <button class="category-btn">Sandwich & Burger</button>
+        <button class="category-btn">Maggie</button>
+        <button class="category-btn">Hot-drink</button>
+        <button class="category-btn">Cold-drink</button>
+        <button class="category-btn">BBT Specials</button>
+        <button class="category-btn">BBT Specials Combo</button>
+      </div>
+      <div id="dessert-card-container">
+      </div>
+    </main>
+    <script src="./eCart.js"></script>
+  </body>
+</html>
