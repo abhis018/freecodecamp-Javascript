@@ -8,17 +8,32 @@ const postsContainer = document.getElementById("posts-container");
 const timeAgo = (time) => {
   const currentTime = new Date();
   const lastPost = new Date(time);
-  let minutes = Math.floor((currentTime - lastPost) / 60000);
-let hours = Math.floor((currentTime - lastPost) / 3600000);
-let days = Math.floor((currentTime - lastPost) / 86400000);
-  if(minutes < 60){
-    return `${minutes}m ago`;
-  }else if(hours < 24){
-    return `${hours}h ago`;
-  }else {
-    return `${days}d ago`;
+
+  const timeDifference = currentTime - lastPost;
+  const msPerMinute = 1000 * 60;
+
+  const minutesAgo = Math.floor(timeDifference / msPerMinute);
+  const hoursAgo = Math.floor(minutesAgo / 60);
+  const daysAgo = Math.floor(hoursAgo / 24);
+
+  if (minutesAgo < 60) {
+    return `${minutesAgo}m ago`;
   }
+
+  if (hoursAgo < 24) {
+    return `${hoursAgo}h ago`;
+  }
+
+  return `${daysAgo}d ago`;
 };
+
+const viewCount = (views) => {
+  if(views >= 1000){
+    return `${Math.floor(views/1000)}` + `k`;
+  }else {
+    return views;
+  }
+}
 
 const fetchData = async () => {
   try {
@@ -56,8 +71,7 @@ const showLatestPosts = (data) => {
       <td></td>
       <td>${posts_count - 1}</td>
       <td>${views}</td>
-      <td></td>
+      <td>${timeAgo(bumped_at)}</td>
     </tr>`;
   }).join("");
 };
-
