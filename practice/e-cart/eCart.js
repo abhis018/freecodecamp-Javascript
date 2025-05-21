@@ -301,10 +301,13 @@ function filterByCategory(category) {
       <div class="dessert-card">
         <h2>${name}</h2>
         <p class="dessert-price">₹ ${price}</p>
-        <button 
-          id="${id}" 
-          class="btn add-to-cart-btn">Add to cart
-        </button>
+        <div class="btn-con">
+          <button 
+            id="${id}" 
+            class="btn add-to-cart-btn">+
+          </button>
+          <button id="${id}" class="btn add-to-cart-btn">-</button>
+        </div>  
       </div>
     `;
   });
