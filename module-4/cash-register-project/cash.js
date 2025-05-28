@@ -17,13 +17,13 @@ let cid = [
 
 let total = 0;
 cid.forEach((item) => {
-  total =+ item[1];
+  total += item[1];
 });
 
 purchaseBtn.addEventListener("click",() => {
-  if(cash.value < price){
+  if(parseFloat(cash.value) < price){
     alert("Customer does not have enough money to purchase the item");
-  }else if(cash.value === price){
+  }else if(parseFloat(cash.value) === price){
     changeDue.textContent = "No change due - customer paid with exact cash";
   }
 });
