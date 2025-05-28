@@ -23,5 +23,7 @@ cid.forEach((item) => {
 purchaseBtn.addEventListener("click",() => {
   if(cash.value < price){
     alert("Customer does not have enough money to purchase the item");
+  }else if(cash.value === price){
+    changeDue.textContent = "No change due - customer paid with exact cash";
   }
 });
