@@ -21,5 +21,7 @@ cid.forEach((item) => {
 });
 
 purchaseBtn.addEventListener("click",() => {
-
-})
+  if(cash.value < price){
+    alert("Customer does not have enough money to purchase the item");
+  }
+});
