@@ -64,9 +64,13 @@ function getChange(price, cash, drawer) {
       used = +(used + value).toFixed(2);
     }
 
-    if (used > 0) result.push([name, used]);
+    if (used > 0){
+        result.push([name, used]);
+    } 
   }
 
-  if (change > 0) return { status: "INSUFFICIENT_FUNDS", change: [] };
+  if (change > 0){
+    return { status: "INSUFFICIENT_FUNDS", change: [] };
+  } 
   return { status: "OPEN", change: result };
 }
