@@ -28,6 +28,16 @@ purchaseBtn.addEventListener("click", () => {
     if (result.status === "INSUFFICIENT_FUNDS") {
       changeDue.textContent = "Status: INSUFFICIENT_FUNDS";
     } else {
+       if (result.status === "OPEN") {
+    result.change.forEach(([name, amountGiven]) => {
+      for (let i = 0; i < cid.length; i++) {
+        if (cid[i][0] === name) {
+          cid[i][1] = +(cid[i][1] - amountGiven).toFixed(2);
+          break;
+        }
+      }
+    });
+  }
       let output = "Status: OPEN ";
       result.change.forEach(([name, amount]) => {
         output += `${name}: $${amount.toFixed(2)}, `;
