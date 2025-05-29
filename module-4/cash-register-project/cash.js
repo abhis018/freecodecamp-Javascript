@@ -15,15 +15,58 @@ let cid = [
   ['ONE HUNDRED', 100]
 ];
 
-let total = 0;
-cid.forEach((item) => {
-  total += item[1];
-});
+purchaseBtn.addEventListener("click", () => {
+  const cashGiven = parseFloat(cash.value);
 
-purchaseBtn.addEventListener("click",() => {
-  if(parseFloat(cash.value) < price){
+  if (cashGiven < price) {
     alert("Customer does not have enough money to purchase the item");
-  }else if(parseFloat(cash.value) === price){
+  } else if (cashGiven === price) {
     changeDue.textContent = "No change due - customer paid with exact cash";
+  } else {
+    const result = getChange(price, cashGiven, cid);
+
+    if (result.status === "INSUFFICIENT_FUNDS") {
+      changeDue.textContent = "Status: INSUFFICIENT_FUNDS";
+    } else {
+      let output = "Status: OPEN ";
+      result.change.forEach(([name, amount]) => {
+        output += `${name}: $${amount.toFixed(2)}, `;
+      });
+      changeDue.textContent = output.slice(0, -2); 
+    }
   }
 });
+
+function getChange(price, cash, drawer) {
+  const values = {
+    "ONE HUNDRED": 100,
+    "TWENTY": 20,
+    "TEN": 10,
+    "FIVE": 5,
+    "ONE": 1,
+    "QUARTER": 0.25,
+    "DIME": 0.10,
+    "NICKEL": 0.05,
+    "PENNY": 0.01
+  };
+
+  let change = +(cash - price).toFixed(2);
+  let result = [];
+
+  for (let i = drawer.length - 1; i >= 0; i--) {
+    let [name, amount] = drawer[i];
+    let value = values[name];
+    let used = 0;
+
+    while (change >= value && amount >= value) {
+      change = +(change - value).toFixed(2);
+      amount = +(amount - value).toFixed(2);
+      used = +(used + value).toFixed(2);
+    }
+
+    if (used > 0) result.push([name, used]);
+  }
+
+  if (change > 0) return { status: "INSUFFICIENT_FUNDS", change: [] };
+  return { status: "OPEN", change: result };
+}
