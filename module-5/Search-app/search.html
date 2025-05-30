@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fCC Forum Leaderboard</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main>
+      <label>
+        <p>Search for Creature Name or ID:</p>
+        <input id="search-input" required></input>
+        <button id="search-button">Search</button>
+      </label>
+      <div>
+        <p id="creature-name"></p>
+        <p id="creature-id"></p>
+        <p id="weight"></p>
+        <p id="height"></p>
+        <p id="types"></p>
+      </div>
+      <div class="table-wrapper">
+        <table border="1" cellpadding="10" cellspacing="0">
+          <tr>
+            <th>Base</th>
+            <th>Stats</th>
+          </tr>
+          <tr>
+            <td id="hp">HP:</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td id="attack">Attack:</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td id="defense">Defense:</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td id="special-attack">Sp. Attack:</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td id="special-defense">Sp. Defense:</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td id="speed">Speed:</td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>
