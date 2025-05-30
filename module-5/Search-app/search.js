@@ -17,16 +17,17 @@ const fetchList = async () => {
 
 fetchList();
 
-searchBtn.addEventListener("click", () => {
-  const match = creatureListData.find(c => c.id.toString() === searchInput.toLowerCase() || c.name.toLowerCase() === searchInput.toLowerCase());
+searchBtn.addEventListener("click", async () => {
+  const searchValue = searchInput.value.trim().toLowerCase();
+  const match = creatureListData.find(c => c.id.toString() === searchValue || c.name.toLowerCase() === searchValue);
 
   if(!match){
   alert("Creature not found");
+  return;
 }
 
 const creaturesData = `https://rpg-creature-api.freecodecamp.rocks/api/creature/${match.id}`;
 
-const fetchData = async () => {
   try {
     const data = await fetch(creaturesData);
     const dataList = await data.json();
@@ -34,7 +35,6 @@ const fetchData = async () => {
   }catch (err){
     console.log(err);
   }
-}
 
 fetchData();
 
