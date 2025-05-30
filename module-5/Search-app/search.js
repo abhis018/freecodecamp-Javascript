@@ -1,5 +1,5 @@
 const creatures = "https://rpg-creature-api.freecodecamp.rocks/api/creatures";
-const searchInput = document.getElementById("search-input").value;
+const searchInput = document.getElementById("search-input");
 const searchBtn = document.getElementById("search-button");
 
 let creatureListData = [];
@@ -18,7 +18,7 @@ const fetchList = async () => {
 fetchList();
 
 searchBtn.addEventListener("click", async () => {
-  const searchValue = searchInput.value.trim().toLowerCase();
+  const searchValue = searchInput.value.toLowerCase();
   const match = creatureListData.find(c => c.id.toString() === searchValue || c.name.toLowerCase() === searchValue);
 
   if(!match){
@@ -35,8 +35,6 @@ const creaturesData = `https://rpg-creature-api.freecodecamp.rocks/api/creature/
   }catch (err){
     console.log(err);
   }
-
-fetchData();
 
 });
 
