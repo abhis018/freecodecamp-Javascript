@@ -2,16 +2,28 @@ const rollDiceBtn = document.getElementById("roll-dice-btn");
 const keepScoreBtn = document.getElementById("keep-score-btn");
 const dieElement = document.querySelectorAll(".die");
 const none = document.getElementById("none");
+const totalScore = document.getElementById("total-score");
+const currentRound = document.getElementById("current-round");
+const currentRoundRolls = document.getElementById("current-round-rolls");
 
 let total = 0;
+let rollCount = 0;
+let roundCount = 1;
 
 rollDiceBtn.addEventListener("click", () => {
+    if (rollCount >= 3) {
+        alert("You've already rolled 3 times. Please select a score option before rolling again.");
+        return;
+    }
     none.disabled = false;
     dieElement.forEach(die => {
         const dice = Math.floor(Math.random() * 6) + 1;
         die.textContent = dice;
     });
+    rollCount++;
+    currentRoundRolls.textContent = rollCount;
     checking();
+
 });
 
 const checking = () => {
@@ -76,31 +88,30 @@ keepScoreBtn.addEventListener("click", () => {
 
         if(value === "three-of-a-kind"){
             calculateTotal();
-            return;
         }else if(value === "four-of-a-kind"){
             calculateTotal();
-            return;
         }else if(value === "full-house"){
             total += 25;
-            return;
         }else if(value === "small-straight"){
             total += 30;
-            return;
         }else if(value === "large-straight"){
             total += 40;
-            return;
         }else{
             total += 0;
-            console.log(total);
-            return;
         }
+        rollCount = 0;
+        roundCount++;
+        currentRound.textContent = roundCount;
+        currentRoundRolls.textContent = rollCount;
         document.querySelectorAll('input[name="score-options"]').forEach(option => {
             option.checked = false;
             option.disabled = true;
         });
-
+       totalScore.textContent = total;
         none.disabled = true; 
-
+        if (roundCount === 7) {
+            resetGame();
+        }
 
     } else {
         alert('Please select an option first!');
@@ -115,3 +126,23 @@ const calculateTotal = () => {
   return total;
 };
 
+const resetGame = () => {
+    alert(`Game over! Starting a new game.Your total Score was ${total}`);
+    total = 0;
+    rollCount = 0;
+    roundCount = 0;
+
+    dieElement.forEach(die => {
+        die.textContent = "-";
+    });
+
+    document.querySelectorAll('input[name="score-options"]').forEach(option => {
+        option.checked = false;
+        option.disabled = true;
+    });
+
+    totalScore.textContent = `Total: ${total}`;
+    currentRound.textContent = roundCount;
+    currentRoundRolls.textContent = rollCount;
+    none.disabled = true;
+}
