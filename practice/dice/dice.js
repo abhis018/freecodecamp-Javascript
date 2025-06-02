@@ -133,7 +133,7 @@ const resetGame = () => {
     roundCount = 0;
 
     dieElement.forEach(die => {
-        die.textContent = "-";
+        die.textContent = "";
     });
 
     document.querySelectorAll('input[name="score-options"]').forEach(option => {
