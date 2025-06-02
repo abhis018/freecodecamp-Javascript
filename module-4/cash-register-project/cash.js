@@ -28,7 +28,6 @@ purchaseBtn.addEventListener("click", () => {
     if (result.status === "INSUFFICIENT_FUNDS") {
       changeDue.textContent = "Status: INSUFFICIENT_FUNDS";
     } else if (result.status === "CLOSED") {
-      // Empty the global cid
       cid = cid.map(([name, _]) => [name, 0]);
 
       let output = "Status: CLOSED ";
@@ -37,7 +36,6 @@ purchaseBtn.addEventListener("click", () => {
       });
       changeDue.textContent = output.slice(0, -2);
     } else if (result.status === "OPEN") {
-      // Update global cid based on change given
       result.change.forEach(([name, amountGiven]) => {
         for (let i = 0; i < cid.length; i++) {
           if (cid[i][0] === name) {
@@ -72,7 +70,6 @@ function getChange(price, cash, drawer) {
   let change = +(cash - price).toFixed(2);
   let totalDrawer = +(drawer.reduce((sum, [_, amount]) => sum + amount, 0)).toFixed(2);
 
-  // First check for exact or empty drawer before checking for insufficient funds
   if (totalDrawer === change) {
     return { status: "CLOSED", change: drawer };
   }
